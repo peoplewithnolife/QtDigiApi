@@ -176,6 +176,7 @@ int SerialTestRead(void)
 int SerialClose(void)
 {
    CloseHandle(hComm);
+   return 0;
 }
 
 int SerialSetup(void)
@@ -226,3 +227,57 @@ int SerialSetup(void)
     return 0;
 
 }
+
+/*
+int main(int argc, char* argv[])
+{
+    HANDLE hComm;
+    char ch;
+
+    for (int i = 0; i < argc; i++)
+        printf("%s\n", argv[i]);
+
+    hComm = CreateFileA( argv[1],GENERIC_READ | GENERIC_WRITE,
+                        0,
+                        0,
+                        OPEN_EXISTING,
+                        NULL,
+                        0);
+
+    if (hComm == INVALID_HANDLE_VALUE)
+    {
+        printf("Cannot open %s\n", argv[1]);        //error occured alert user about error
+        return -1;
+    }
+
+    printf("Press the following keys:\n");
+    printf("1: Set DTR\n");
+    printf("2: Clear DTR\n");
+    printf("3: Set RTS\n");
+    printf("4: Clear RTS\n");
+    printf("q: End Program\n");
+
+    do
+    {
+        ch = _getch();
+        switch (ch)
+        {
+        case '1':   if (EscapeCommFunction(hComm,SETDTR) == 0)
+                        printf ("Error Setting DTR\n");
+                    break;
+        case '2':   if (EscapeCommFunction(hComm,CLRDTR) == 0)
+                        printf ("Error Clearing DTR\n");
+                    break;
+        case '3':   if (EscapeCommFunction(hComm,SETRTS) == 0)
+                        printf ("Error Setting CTS\n");
+                    break;
+        case '4':   if (EscapeCommFunction(hComm,CLRRTS) == 0)
+                        printf ("Error Clearing CTS\n");
+                    break;
+        }
+    }   while (ch != 'q');
+
+
+    return 0;
+}
+ */
